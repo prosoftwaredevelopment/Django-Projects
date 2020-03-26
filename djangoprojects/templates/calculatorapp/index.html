@@ -24,22 +24,47 @@
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
-            
-           
+            <li class="nav-item">
+              <a class="nav-link" href="#instructions">Instructions</a>
+            </li>
           </ul>
           
         </div>
       </nav>
 
       <div class="container-fluid" style="margin-bottom: 20rem;">
+        {% if error %}
+          <div class="row">
+            <div class="col-md-6" style="margin: 0 auto;">
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+              {% if result %}
+              <div class="row">
+                <div class="col-md-6" style="margin: 0 auto;">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{q}} = {{ans}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </div>
+            </div>
+            {% endif %}
           <div class="row">
               <div class="col-md-6" style="margin: 1rem auto 0  auto;">
                 <img class="img-fluid" src="{% static 'main.jpg' %}">
                 <div class="card">
                     <div class="card-body">
-                        <form method="GET" action="#">
+                        <form method="GET" action="{% url 'submitquery'%}">
                             <div class="form-group">
-                                <input type="search" class="form-control" name="query" id="query">
+                                <input type="text" class="form-control" name="query" id="query">
                             </div>
                             <div class="row">
                                 <div class="col-6">
@@ -68,6 +93,26 @@
                   </p>
               </div>
           </div>
+          <div class="row">
+            <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+              <p class="display-4" id="instructions" name="about" style="text-align: center;">
+                  Instructions
+              </p>
+              <hr>
+              <ul class="list-group">
+                <li class="list-group-item">+ Additon</li>
+                <li class="list-group-item">- Minus</li>
+                <li class="list-group-item">* Multiplication</li>
+                <li class="list-group-item">/ Division</li>
+                <li class="list-group-item">// Floor Division</li>
+                <li class="list-group-item">** Exponential</li>
+                <li class="list-group-item">% Mod</li>
+                <li class="list-group-item">( ) Parentheses</li>
+
+              </ul>
+            </div>
+        </div>
+          
       </div>
       
       <div class="container-fluid">
