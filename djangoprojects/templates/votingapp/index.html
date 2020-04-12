@@ -1,102 +1,118 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Django Voting App</title>
-  </head>
-  <body class="bg-light">
-    {{arr}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Django Voting App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#instructions">Instructions</a>
-            </li>
-          </ul>
-          
-        </div>
-      </nav>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-      <div class="container-fluid" style="margin-bottom: 20rem;">
-       
-          <div class="row">
-              <div class="col-md-6" style="margin: 1rem auto 0  auto;">
-                <img class="img-fluid" src="{% static 'main2.jpg' %}">
-                <div class="card">
-                    <div class="card-body">
-                        <form method="GET" action="{% url 'submitquery'%}">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="query" id="query">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="submit" class="btn btn-success" style="display: block;margin: 0 auto;">
+  <title>Django Voting App</title>
+</head>
 
-                                </div>
-                                <div class="col-6">
-                                    <input type="reset" class="btn btn-danger" style="display: block;margin: 0 auto;">
-    
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
+<body class="bg-light">
+  {{arr}}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Django Voting App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#instructions">Instructions</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <div class="container-fluid" style="margin-bottom: 20rem;">
+
+    <div class="row">
+      <div class="col-md-6" style="margin: 1rem auto 0  auto;">
+        <img class="img-fluid" src="{% static 'main2.jpg' %}">
+        <div class="card">
+          <div class="card-body">
+            <form method="GET" action="{% url 'getquery' %}">
+              <input list="languages" class="form-control" style="margin-bottom: 1rem;" name="languages">
+              <datalist id="languages">
+                {% for eachlanguage in arr %}
+                <option value="{{eachlanguage}}">
+                {% endfor %}
+              </datalist>
+              <div class="row">
+                <div class="col-6">
+                  <input type="submit" class="btn btn-success" style="display: block;margin: 0 auto;">
+
+                </div>
+                <div class="col-6">
+                  <input type="reset" class="btn btn-danger" style="display: block;margin: 0 auto;">
+
                 </div>
               </div>
-          </div>
-          <div class="row">
-              <div class="col-md-6" style="margin: 2rem auto 0 auto;">
-                <p class="badge badge-success" id="about" name="about" style="text-align: center;display: block;font-size: 2rem;">
-                    About
-                </p>
-                <hr>
-                <p class="lead" style="text-align: center;font-size: 2rem;">
-                    Pick Your Favourite Language and Vote
-                  </p>
-              </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6" style="margin: 2rem auto 0 auto;">
-              <p class="badge badge-danger" id="about" name="about" style="text-align: center;display: block;font-size: 2rem;">
-                Instructions
-            </p>
-              <p class="display-4" id="instructions" name="about" style="text-align: center;font-size: 2rem;">
-                  Select Your Language And See Results
-              </p>
-            </div>
-        </div>
-          
-      </div>
-      
-      <div class="container-fluid">
-          <div class="row">
-              <footer class="fixed-bottom navbar-light" style="background: black;color: white;text-align: center;">
-                  <p>Thanks for using our app</p>
-              </footer>
-          </div>
-      </div>
-    
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+        <p class="badge badge-success" id="about" name="about"
+          style="text-align: center;display: block;font-size: 2rem;">
+          About
+        </p>
+        <hr>
+        <p class="lead" style="text-align: center;font-size: 2rem;">
+          Pick Your Favourite Language and Vote
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+        <p class="badge badge-danger" id="about" name="about"
+          style="text-align: center;display: block;font-size: 2rem;">
+          Instructions
+        </p>
+        <p class="display-4" id="instructions" name="about" style="text-align: center;font-size: 2rem;">
+          Select Your Language And See Results
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <footer class="fixed-bottom navbar-light" style="background: black;color: white;text-align: center;">
+        <p>Thanks for using our app</p>
+      </footer>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
