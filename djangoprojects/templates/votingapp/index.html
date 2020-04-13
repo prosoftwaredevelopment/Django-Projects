@@ -15,7 +15,6 @@
 </head>
 
 <body class="bg-light">
-  {{arr}}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Django Voting App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -32,13 +31,20 @@
         <li class="nav-item">
           <a class="nav-link" href="#instructions">Instructions</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#result">Result</a>
+        </li>
       </ul>
 
     </div>
   </nav>
 
   <div class="container-fluid" style="margin-bottom: 20rem;">
-
+    {{globalcnt}}
+    {% for key,value in globalcnt.items %}
+    {{key}} - {{value}}
+    <br>
+    {% endfor %}
     <div class="row">
       <div class="col-md-6" style="margin: 1rem auto 0  auto;">
         <img class="img-fluid" src="{% static 'main2.jpg' %}">
@@ -49,7 +55,7 @@
               <datalist id="languages">
                 {% for eachlanguage in arr %}
                 <option value="{{eachlanguage}}">
-                {% endfor %}
+                  {% endfor %}
               </datalist>
               <div class="row">
                 <div class="col-6">
@@ -64,6 +70,54 @@
 
             </form>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+        <p class="badge badge-warning" id="result" name="result"
+          style="text-align: center;display: block;font-size: 2rem;">
+          Result
+        </p>
+        <hr>
+        <p class="lead" style="text-align: center;font-size: 2rem;">
+          Result Table
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -85,6 +139,7 @@
           style="text-align: center;display: block;font-size: 2rem;">
           Instructions
         </p>
+        <hr>
         <p class="display-4" id="instructions" name="about" style="text-align: center;font-size: 2rem;">
           Select Your Language And See Results
         </p>
