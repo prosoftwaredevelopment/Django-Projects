@@ -82,6 +82,7 @@
         <hr>
         <p class="lead" style="text-align: center;font-size: 2rem;">
           Result Table
+        <a href="{% url 'sortdata' %}" class="btn btn-primary">Sort Data In Descending Order</a>
         </p>
       </div>
     </div>
@@ -92,30 +93,22 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Language</th>
+                <th scope="col">Count</th>    
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            {% for key,value in globalcnt.items %}  
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{key}}</td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: {{value}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{value}}</div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
             </tbody>
           </table>
         </div>

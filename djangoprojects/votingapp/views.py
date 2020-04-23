@@ -23,3 +23,12 @@ def getquery(request):
         "globalcnt" : globalcnt
     }
     return render(request,'index.html',context=mydictionary)
+
+def sortdata(request):
+    global globalcnt
+    globalcnt = dict(sorted(globalcnt.items(),key=lambda x:x[1],reverse=True))
+    mydictionary = {
+        "arr" : arr,
+        "globalcnt" : globalcnt
+    }
+    return render(request,'index.html',context=mydictionary)
